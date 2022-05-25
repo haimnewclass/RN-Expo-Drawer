@@ -8,18 +8,23 @@ import About from './src/screens/About';
 import SignUp from './src/screens/SignUp';
 import Contact from './src/screens/Contact';
 import Home from './src/screens/Home';
-
+//
 const Drawer = createDrawerNavigator();
-
+             
 function App() {
+  const arr=[{name:'Login', component:()=>{return Login;}},{name:'Contact', component:()=>{return Contact;}}];
+
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="About" component={About} />
-        <Drawer.Screen name="Login" component={Login} />
-        <Drawer.Screen name="SignUp" component={SignUp} />
-        <Drawer.Screen name="Contact" component={Contact} />
+      
+      <Drawer.Screen name="Home" component={Home} />
+
+      {arr.map((x)=>{
+        const c1 = x.component();
+      return( <Drawer.Screen name={x.name} component={c1} />)
+      })}
+                       
       </Drawer.Navigator>
     </NavigationContainer>
   );
